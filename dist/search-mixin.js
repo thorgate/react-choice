@@ -61,7 +61,8 @@ var SearchMixin = {
       searchResults: searchResults,
       searchTokens: result.tokens,
       highlighted: highlighted,
-      selected: null });
+      selected: null
+    });
   },
 
   _handleFocus: function _handleFocus(event) {
@@ -152,6 +153,7 @@ var SearchMixin = {
       searchTokens: [],
       highlighted: _.first(options)
     };
-  } };
+  }
+};
 
 module.exports = SearchMixin;

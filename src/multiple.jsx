@@ -40,6 +40,7 @@ var MultipleChoice = React.createClass({
   mixins: [SearchMixin],
 
   propTypes: {
+    emptyDropdown: React.PropTypes.bool, // Set to true, to also show empty dropdown
     name: React.PropTypes.string, // name of input
     placeholder: React.PropTypes.string, // input placeholder
     values: React.PropTypes.array, // initial values
@@ -147,6 +148,10 @@ var MultipleChoice = React.createClass({
   },
 
   _getAvailableOptions: function(values) {
+    if (!values) {
+        values = this.state.values;
+    }
+
     var options = this.state.initialOptions;
     var valueField = this.props.valueField;
 
@@ -384,7 +389,7 @@ var MultipleChoice = React.createClass({
             ref="input" />
         </div>
 
-        {this.state.focus ?
+        {this.state.focus && (this.props.emptyDropdown || options.length > 0) ?
           <Options onMouseDown={this._handleOptionsMouseDown} ref="options">
             {options}
           </Options> : null}
